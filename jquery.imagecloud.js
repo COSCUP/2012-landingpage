@@ -159,7 +159,11 @@
       var $j = this;
       getPhotos[settings.photoListType](
         function (photos) {
+          if (!photos)
+            return;
+
           settings.photos = photos;
+
           $j.imageCloud(settings);
         }
       );
