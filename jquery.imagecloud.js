@@ -157,7 +157,7 @@
     if (getPhotos[settings.photoListType] && !settings.photos && settings.query) {
       // No photos but query, get it.
       var $j = this;
-      getFlickrPhotos(
+      getPhotos[settings.photoListType](
         function (photos) {
           settings.photos = photos;
           $j.imageCloud(settings);
