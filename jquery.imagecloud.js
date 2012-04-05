@@ -68,7 +68,8 @@
 
         if (localStorage) {
           var data = localStorage.getItem('ImageCloud:flickr:' + settings.query);
-          if (data) {
+          var timestamp = parseInt(localStorage.getItem('ImageCloud:flickr:' + settings.query + ':timestamp'));
+          if (data && Date.now() - timestamp < 24*60*60*1000) {
             callback(JSON.parse(data));
             return;
           }
@@ -81,11 +82,16 @@
               callback(false);
               return;
             }
-            if (localStorage)
+            if (localStorage) {
               localStorage.setItem(
                 'ImageCloud:flickr:' + settings.query,
                 JSON.stringify(data.query.results.photo)
               );
+              localStorage.setItem(
+                'ImageCloud:flickr:' + settings.query + ':timestamp',
+                Date.now().toString()
+              );
+            }
 
             callback(data.query.results.photo);
           }
