@@ -65,6 +65,15 @@
     var ngx, ngy, grid, listLength, canvasSize,
     getPhotos = {
       'flickr': function (callback) {
+
+        if (localStorage) {
+          var data = localStorage.getItem('ImageCloud:flickr:' + settings.query);
+          if (data) {
+            callback(JSON.parse(data));
+            return;
+          }
+        }
+
         $.getJSON(
           'http://query.yahooapis.com/v1/public/yql?q=' + encodeURIComponent(settings.query  + ' and extras="url_' + settings.flickrSize + '"') + '&format=json&diagnostics=true&callback=?',
           function (data, status) {
@@ -72,6 +81,12 @@
               callback(false);
               return;
             }
+            if (localStorage)
+              localStorage.setItem(
+                'ImageCloud:flickr:' + settings.query,
+                JSON.stringify(data.query.results.photo)
+              );
+
             callback(data.query.results.photo);
           }
         );
