@@ -58,7 +58,7 @@ jQuery(function ($) {
     beforeImageLoad: function ($img, r, R) {
       $img.css('opacity', 0);
     },
-    query: 'select * from flickr.photos.search(0,150) where group_id="1790615@N22" ' +
+    query: 'select * from flickr.photos.search(0,150) where user_id="51987472@N04" ' +
       'and sort="interestingness-desc" ' +
       'and api_key = "64a8192d359871faf7686f8c2cbecf05"',
     imageLoad: function ($img, r, R) {
