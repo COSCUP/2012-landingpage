@@ -13,5 +13,5 @@ You might find $.imagecloud useful for your own project. Feel free to use it (an
 ### Deploy
 
 * commit to master, non-fast-forward merge to `gaq` branch every time you push
-* Use `gaq` branch on coscup.org
+* Push to Github to trigger `pullme.php` and update the site.
 
